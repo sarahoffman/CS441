@@ -1,0 +1,38 @@
+Introduction:
+1. Circadian rhythms are important for lots of reasons, but the way that their able to adjust and remain robust is not well understood.
+2. This is particularly hard to study in mammals because the SCN (supchiasmatic nucleus) can’t be reached with light easily, but in drosophila the task is much much easier due to the blue light receptor cryptochrome (CRY) in brain explants. 
+3. This study was done in two parts: ex-vivo and in-silico
+    1. ex-vivo: cut up brains and kept them in constant darkness (DD) for 6 days or exposed them to a circadian time 22-h light pulse after nearly 2 days in culture.
+    2. in-silico: used ODEs to model circadian rhythms and did the same test with them.
+4. There are 6 parts to the circadian network: large and small ventrolateral neurons (l-LNvs + s-LNvs), dorsolateral neurons (LNds), and 3 subsets of dorsal neurons (DNs 1, 2, and 3). This study is aimed at looking at these 6 different parts and checking how much each of them contribute to getting on cycle
+5. From the results they found that there were some patterns (unclear what kind of patterns so far), after which they developed a new model with 3 types of oscillators.
+6. What they show overall is that, while in the past it has been shown the synchrony helps with robustness, de-synchrony and damping may be key adaptive features to help return people to normal when phase-shifting. This finding (perhaps artificially changing synchrony) could help with red-eye, etc.
+
+Methods:
+1. Bioluminescence: Adult male flies (why just male?) were kept in 12 hours light/12 hours dark for three days, killed and directed for brains, then brains were scanned using metamorph for 6 days in all dark, or with a 22-hour light pulse (15 minutes on) 
+2. Raster Plots: Roberts et. al. shows how to do this; warmer colors high amplitude, cooler low amplitude; heat maps were made for each of the 6 subparts of circadian network.
+3. Circular Phase Plots (sine fit): Used WMTSA Wavelet Toolkit in MATLAB to fit data to sine wave. Used a null hypothesis that says phases are uniformly distributed and found with significance that they could reject it. This means that the phases weren’t uniform. More from Roberts et al (2015). 
+4. Validation of sine-fit estimates: A time-delay embedding method was used to verify information. If we need to replicate this, we need to look at Kantz and Schreiber (2003) for a how-to and why.
+5. Calculation of order parameter: Used Gonze (2005) for algorithm on synchrony. This could be used to generate a number between 0 (completely uniform distribution) and 1 (completely synchronized) for the circadian rhythms.  
+6. Phase ensemble animations: Single neuron, individual neuronal subgroups, and whole network animations are displayed using MATLAB scripts to show animations for synchronizing over time.
+7. Model simulations: used a simplified negative feedback look but remains simple enough for an exact stability test. (Tyson 2002). The ODEs are not meant to represent particular subgroups or neurotransmitters, just to mirror the wave. This is a modified version of the Goodwin model: 
+8. Made a network of 60 Goodwin oscillators, broken into three groups. Each group receives the coupling signals below.
+    1. (10,1-10) group 1 was directly light responsive, weakly damped, and send an activating coupling signal that increases transcription rate of a
+    2. (10,11-20) group 2 oscillators are more strongly light responsive, weak damped, and transmit a repressing signal that decrease transcription rate of a when Z value is too high (above steady state)
+    3. (40,21-60) group 3 are not light responsive, strongly damped, and have the same signal as group 2. 
+
+
+Results:
+1. Neuronal Subgroups Exhibit Distinct Signatures: Liu et al 2007, Yan et al… more name to see similar attempts. The subgroups behave differently. Some are robust throughout, some lose synchrony right away, some can recover it really well with the light pulse. The question remains: how can the behavior within each of these subgroups be different? Also, does the heterogenous nature of the subgroups contribute to the ability to be flexibly robust?
+2. Drosophila Heterogenous Circadian Neural Networks are Robust but Flexible: this is the sine-fitting part, but they somehow looked at the neuron level and saw that even though each neuron and subgroup has pretty different individual oscillations, the mean oscillations are super robust. Moreover, the phase shifting light makes them all respond such that the new mean is also good. When looking at the individual subgroups, desynchronized subgroups were ones with no average mean (mean of 0, or incalculable). These were considered to have “damped amplitude.” s-LNvs and LCDs are considered strong subgroups, as they show robust coherence throughout recordings. the others are considered weak because they show damped or desynchronized measures after the 6 days in the dark. https://scholar.harvard.edu/files/malf/files/circularttime-maluque_0.pdf (circular sine plotting)
+    1. LNds: first responders to change and pull the network to a new phase state, the rest desynchronize with phase change light pulse
+    2. s-LNvs maintain robust mean phase even through darkness: core pacemaker neurons. 
+3. Complementary Dynamics in Constant Dark/Most subgroups desynchronize with light pulse; the DN3s don’t have photoreceptors and so they are least affected by the light pulse but also lose synchrony after the other groups do, meaning that they are connected in such a way that makes them shift with the others.
+    1. They did something with time-delay embedding again to test their results, we need to learn what this is. After they confirmed significance they began to test how different network and oscillator properties could affect these dynamics
+4. Matlab time: what mixing strong and weak oscillators shows: need to figure out how to make a “network” of oscillators. Made 3 groups with different light responses, ideas based on ideas about qualitative features of the Drosophila circadian circuit guided by literature (collins eta al 2015, diesel et al 2014, yao and share 2014). 
+
+Discussion
+* Our first findings back up a lot of data from other studies about the various roles of the neuronal subgroups
+* our matlab findings show that desynchronization and damping may be key features for a phase shift in the first place.
+
+    
